@@ -1,0 +1,39 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateInvoiceTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('invoice', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('InvoiceNo');
+            $table->string('StockCode');
+            $table->text('Description')->nullable();
+            $table->integer('Quantity');
+            $table->dateTime('InvoiceDate');
+            $table->decimal('UnitPrice', 6, 2);
+            $table->unsignedBigInteger('CustomerId')->nullable();
+            $table->string('Country');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('invoice');
+    }
+}
